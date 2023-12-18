@@ -1,14 +1,22 @@
 
 const cuadros = document.querySelectorAll('.cuadro');
 const Resultado = document.getElementById('Resultado');
+
+const puntajeX = document.getElementById('puntajeX');
+const puntajeO = document.getElementById('puntajeO');
+
 console.log(cuadros);
 var turno = "X";
 var jugadas = 0;
 var tablero = [];
+var puntoX = 0;
+var puntoO = 0;
 
+const siguiente = document.getElementById('siguiente');
+siguiente.addEventListener('click',funcionsiguiente())
 for (var i = 0; i < cuadros.length; i++) {
     cuadros[i].addEventListener('click',crearManejador(i));
-    cuadros[i].removeEventListener('click',crearManejador(i));
+    
 }
 
 function crearManejador(indice) {
@@ -33,9 +41,19 @@ function crearManejador(indice) {
         console.log(tablero);
        
         if( verificarGanador(tablero) != null){
-            Resultado.innerHTML = verificarGanador(tablero);
+            Resultado.innerHTML = `Ha ganado el equipo: ${verificarGanador(tablero)}`;
+            if(verificarGanador(tablero) == "X"){
+                puntoX++;
+                puntajeX.innerHTML=puntoX;
+            }else{
+                puntoO++;
+                puntajeO.innerHTML=puntoO;
+            }
+
+            siguiente.classList.add('mostrar');
         }else if( jugadas > 8 ){
             Resultado.innerHTML = "Empate";
+            siguiente.classList.add('mostrar');
         }
     }
 }
@@ -50,10 +68,20 @@ function verificarGanador(tablero) {
     for (let i = 0; i < lineasGanadoras.length; i++) {
       const [a, b, c] = lineasGanadoras[i];
       if (tablero[a] && tablero[a] === tablero[b] && tablero[a] === tablero[c]) {
-        return `Ha ganado el equipo  ${tablero[a]}`;
+        return `${tablero[a]}`;
+        
       }
     }
     return null;
     
   }
   
+  function funcionsiguiente(){
+return function(){
+    for (var i = 0; i < cuadros.length; i++) {
+        cuadros[i].textContent  = "";
+        jugadas = 0;
+        
+    }
+}
+  }

@@ -5,27 +5,40 @@
 }
 .contenedor{
   width: 90%;
-
   margin:0 auto;
  
+}
+.puntaje{
+  display: inline;
 }
 
 table{
-
+  border: transparent 7px solid;
   margin:0 auto;
+  border-collapse: collapse; /* Une los bordes de las celdas */
  
-  
 }
-td{
-  border: #000 solid;
-  border-radius: 7px;
+
+
+table td {
+  border: 6px solid black;
   width: 100px;
   height: 100px;
   text-align: center;
   font-size: 65px;
-
 }
+
+
 h2{
   text-align: center;
 }
+
+#siguiente{
+  display: none;
+  margin: 0 auto;
+}
+#siguiente.mostrar{
+  display: block;
+}
+
 

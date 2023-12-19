@@ -15,6 +15,7 @@ var puntoO = 0;
 const siguiente = document.getElementById('siguiente');
 siguiente.addEventListener('click',funcionsiguiente())
 for (var i = 0; i < cuadros.length; i++) {
+    
     cuadros[i].addEventListener('click',crearManejador(i));
     
 }
@@ -36,12 +37,20 @@ function crearManejador(indice) {
                 tablero[indice] = "O"
                 jugadas++;   
             }
+        }else{
+            return;
         }
 
-        console.log(tablero);
        
         if( verificarGanador(tablero) != null){
             Resultado.innerHTML = `Ha ganado el equipo: ${verificarGanador(tablero)}`;
+            for (var i = 0; i < cuadros.length; i++) {
+                
+                cuadros[i].removeEventListener('click', crearManejador(i));
+                
+                
+            }
+            
             if(verificarGanador(tablero) == "X"){
                 puntoX++;
                 puntajeX.innerHTML=puntoX;
@@ -49,10 +58,11 @@ function crearManejador(indice) {
                 puntoO++;
                 puntajeO.innerHTML=puntoO;
             }
-
+            tablero = [];
             siguiente.classList.add('mostrar');
         }else if( jugadas > 8 ){
             Resultado.innerHTML = "Empate";
+            tablero = []
             siguiente.classList.add('mostrar');
         }
     }
@@ -81,7 +91,8 @@ return function(){
     for (var i = 0; i < cuadros.length; i++) {
         cuadros[i].textContent  = "";
         jugadas = 0;
-        
+        siguiente.classList.remove('mostrar');
+        Resultado.innerHTML = "";
     }
 }
   }

@@ -1,7 +1,7 @@
 *{
   padding: 0;
   margin: 0;
-  font-family: "Lulo Clean W01 One Bold";
+  font-family: cursive;
 }
 .contenedor{
   width: 90%;
@@ -13,7 +13,7 @@
 }
 
 table{
-  border: transparent 7px solid;
+  
   margin:0 auto;
   border-collapse: collapse; /* Une los bordes de las celdas */
  
@@ -21,11 +21,17 @@ table{
 
 
 table td {
-  border: 6px solid black;
+ 
   width: 100px;
   height: 100px;
   text-align: center;
   font-size: 65px;
+}
+td ~ td {
+  border-left: black solid;
+}
+tr ~ tr {
+  border-top: black solid;
 }
 
 
